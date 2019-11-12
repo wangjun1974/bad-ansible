@@ -1,0 +1,8 @@
+---
+- name: enable and start postgres
+  systemd:
+    name: postgresql
+    enabled: yes
+    state: restarted
+    daemon_reload: yes
+  become: yes

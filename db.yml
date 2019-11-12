@@ -1,0 +1,9 @@
+---
+- name: config db
+  hosts: appdbs
+  gather_facts: false # remove later! speeds up testing
+  become: true
+
+  roles:
+    - ansible-roles-db
+  

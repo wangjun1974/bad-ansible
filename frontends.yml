@@ -1,0 +1,9 @@
+---
+- name: config frontends
+  hosts: frontends
+  gather_facts: false # remove later! speeds up testing
+  become: true
+
+  roles:
+    - ansible-roles-frontends
+  

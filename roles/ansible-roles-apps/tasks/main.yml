@@ -1,0 +1,20 @@
+---
+- name: 'Install tomcat'
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - tomcat
+    - httpd
+
+- name: 'Create tomcat directory'
+  file:
+    path: /usr/share/tomcat/webapps/ROOT
+    state: directory
+
+- name: 'Copy template index.html.j2 to tomcat'
+  template:
+    src: index.html.j2
+    dest: /usr/share/tomcat/webapps/ROOT/index.html
+    mode: 0644
+  notify: enable and start tomcat and httpd

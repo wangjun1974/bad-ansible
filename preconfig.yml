@@ -1,0 +1,9 @@
+---
+- name: config repos
+  hosts: all
+  gather_facts: false # remove later! speeds up testing
+  become: true
+
+  roles:
+    - ansible-roles-preconfig 
+  

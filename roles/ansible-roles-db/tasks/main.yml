@@ -1,0 +1,19 @@
+---
+- name: 'Install postgres'
+  yum:
+    name: ['postgresql-server']
+    state: latest
+
+- name: 'Check if data directory exist'
+  shell: ls /var/lib/pgsql/data
+  register: check_db_output
+  ignore_errors: yes
+  
+- name: 'Initialize postgres'
+  command: postgresql-setup initdb
+  when: check_db_output.rc != 0
+
+- name: 'Enable and start postgres'
+  debug: 
+    msg: "Enable and start postgres"
+  notify: enable and start postgres
